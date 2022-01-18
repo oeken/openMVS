@@ -335,7 +335,7 @@ inline Plane getFacetPlane(const facet_t& facet)
 // return orientation type
 #ifdef __GNUC__
 #pragma GCC push_options
-#pragma GCC target ("no-fma")
+// #pragma GCC target ("no-fma")
 #endif
 static inline int orientation(const point_t& a, const point_t& b, const point_t& c, const point_t& p)
 {

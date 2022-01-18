@@ -479,10 +479,10 @@ inline void CPUID(int CPUInfo[4], int level) {
 	__cpuid(CPUInfo, level);
 }
 #else
-#include <cpuid.h>
+// #include <cpuid.h>
 inline void CPUID(int CPUInfo[4], int level) {
-	unsigned* p((unsigned*)CPUInfo);
-	__get_cpuid((unsigned&)level, p+0, p+1, p+2, p+3);
+	// unsigned* p((unsigned*)CPUInfo);
+	// __get_cpuid((unsigned&)level, p+0, p+1, p+2, p+3);
 }
 #endif
 
@@ -604,24 +604,25 @@ bool OSSupportsAVX()
 // Function to detect SSE availability in operating system.
 bool OSSupportsSSE()
 {
-	// try SSE instruction and look for crash
-	try {
-		asm("xorps %xmm0, %xmm0");
-	}
-	catch(int e) {
-		return false;     // unknown exception occurred
-	}
-	return true;
+	// // try SSE instruction and look for crash
+	// try {
+	// 	asm("xorps %xmm0, %xmm0");
+	// }
+	// catch(int e) {
+	// 	return false;     // unknown exception occurred
+	// }
+	return false;
 }
 // Function to detect AVX availability in operating system.
 bool OSSupportsAVX()
 {
 	// check if the OS will save the YMM registers
-	unsigned int index(0); //specify 0 for XFEATURE_ENABLED_MASK register
-	unsigned int eax, edx;
-	__asm__ __volatile__("xgetbv" : "=a"(eax), "=d"(edx) : "c"(index));
-	unsigned long long xcrFeatureMask(((unsigned long long)edx << 32) | eax);
-	return (xcrFeatureMask & 0x6) == 0x6;
+	// unsigned int index(0); //specify 0 for XFEATURE_ENABLED_MASK register
+	// unsigned int eax, edx;
+	// __asm__ __volatile__("xgetbv" : "=a"(eax), "=d"(edx) : "c"(index));
+	// unsigned long long xcrFeatureMask(((unsigned long long)edx << 32) | eax);
+	// return (xcrFeatureMask & 0x6) == 0x6;
+	return false;
 }
 /*----------------------------------------------------------------*/
 #endif // _MSC_VER
