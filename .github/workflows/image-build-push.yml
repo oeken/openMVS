@@ -18,4 +18,4 @@ jobs:
     - name: Build image
       run: docker build -t oeken/openmvs:1.1.1 -f docker/Dockerfile .
     - name: Push image
-      run: docker push oeken/openmvg:1.1.1
+      run: docker push oeken/openmvs:1.1.1
